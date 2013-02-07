@@ -1,97 +1,105 @@
+using System;
+
 namespace Zymurgy.Dymensions
 {
     public class Volume
     {
-        private readonly decimal _value;
-        private readonly VolumeUnit _unit;
+        #region Ctors
+
+        protected Volume()
+        {
+
+        }
 
         public Volume(decimal value, VolumeUnit unit)
         {
-            _value = value;
-            _unit = unit;
+            Value = value;
+            Unit = unit;
         }
+
+        #endregion
+
+        #region Properties
+
+        public virtual decimal Value { get; private set; }
+
+        public virtual VolumeUnit Unit { get; private set; }
+
+        #endregion
+
+        #region Equality Members
 
         public override bool Equals(object obj)
         {
-            if (obj.GetType() != typeof(Volume)) return false;
-            return Equals((Volume)obj);
+            if (obj.GetType() != typeof (Volume)) return false;
+            return Equals((Volume) obj);
         }
 
         public bool Equals(Volume other)
         {
-            return other._value.Equals(_value) && Equals(other._unit, _unit);
+            return other.Value.Equals(Value) && Equals(other.Unit, Unit);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                return (_value.GetHashCode() * 397) ^ _unit.GetHashCode();
+                return (Value.GetHashCode()*397) ^ Unit.GetHashCode();
             }
         }
 
-        public static bool operator ==(Volume left, Volume right)
+        #endregion
+
+        //#region Operator Overrides
+
+        //public static bool operator ==(Volume left, Volume right)
+        //{
+        //    return Equals(left, right);
+        //}
+
+        //public static bool operator !=(Volume left, Volume right)
+        //{
+        //    return !Equals(left, right);
+        //}
+
+        //#endregion
+
+        #region Public Methods
+
+        public virtual Volume ConvertTo(VolumeUnit unitTo)
         {
-            return Equals(left, right);
+            var volume = GetInstanceOfCurrentVolume();
+            return volume.ConvertTo(unitTo);
         }
 
-        public static bool operator !=(Volume left, Volume right)
+        private Volume GetInstanceOfCurrentVolume()
         {
-            return !Equals(left, right);
-        }
-
-        public Volume ConvertTo(VolumeUnit unitTo)
-        {
-            switch (_unit)
+            Volume volume;
+            switch (Unit)
             {
-                case VolumeUnit.Litres:
-                    {
-                        switch (unitTo)
-                        {
-                            case VolumeUnit.Gallons:
-                                {
-                                    return new Volume(_value * 0.264172M, VolumeUnit.Gallons);
-                                }
-                            case VolumeUnit.Litres:
-                                {
-                                    return new Volume(_value, _unit);
-                                }
-                        }
-                        break;
-                    }
                 case VolumeUnit.Gallons:
                     {
-                        switch (unitTo)
-                        {
-                            case VolumeUnit.Gallons:
-                                {
-                                    return new Volume(_value, _unit);
-                                }
-                            case VolumeUnit.Litres:
-                                {
-                                    return new Volume(_value / 0.264172M, VolumeUnit.Litres);
-                                }
-                        }
+                        volume = new USGallon(Value);
+                        break;
+                    }
+                case VolumeUnit.Litres:
+                    {
+                        volume = new Litre(Value);
+                        break;
+                    }
+                case VolumeUnit.Quarts:
+                    {
+                        volume = new USQuart(Value);
                         break;
                     }
                 default:
                     {
-                        return new Volume(_value, _unit);
+                        throw new Exception(String.Format("Volume unit {0} is unknown.", Unit.GetType().Name));
                     }
             }
-            return null;
+            return volume;
         }
 
-
-
-        public decimal GetValue()
-        {
-            return _value;
-        }
-
-        public VolumeUnit GetUnit()
-        {
-            return _unit;
-        }
+        #endregion
     }
 }

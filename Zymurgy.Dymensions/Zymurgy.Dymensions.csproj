@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="Litre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="USGallon.cs" />
+    <Compile Include="USQuart.cs" />
     <Compile Include="Volume.cs" />
     <Compile Include="VolumeExtensions.cs" />
     <Compile Include="Weight.cs" />

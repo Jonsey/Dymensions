@@ -3,19 +3,38 @@ namespace Zymurgy.Dymensions
     public class Weight
     {
         #region Fields
-        private readonly decimal _value;
-        private readonly MassUnit _unit;
+        private decimal _value;
+        private MassUnit _unit;
         #endregion
+
+        #region Ctors
+        protected Weight()
+        {
+
+        }
 
         public Weight(decimal value, MassUnit unit)
         {
             _value = value;
             _unit = unit;
+        } 
+        #endregion
+
+        #region Properties
+        public virtual decimal Value
+        {
+            get { return _value; }
+            set { _value = value; }
         }
 
-        #region Operator overloads
+        public virtual MassUnit Unit
+        {
+            get { return _unit; }
+            set { _unit = value; }
+        } 
+        #endregion
 
-        // Todo: Need more checks
+        #region Operator overloads
 
         public static Weight operator +(Weight weight1, Weight weight2)
         {
@@ -65,6 +84,7 @@ namespace Zymurgy.Dymensions
         }
         #endregion
 
+        #region Public Methods
         public Weight ConvertTo(MassUnit unit)
         {
             switch (_unit)
@@ -83,8 +103,10 @@ namespace Zymurgy.Dymensions
                     }
             }
             return null;
-        }
+        } 
+        #endregion
 
+        #region Private Methods
         private Weight FromPounds(MassUnit unit)
         {
             switch (unit)
@@ -144,16 +166,7 @@ namespace Zymurgy.Dymensions
             }
 
             return null;
-        }
-
-        public decimal GetValue()
-        {
-            return _value;
-        }
-
-        public MassUnit GetUnit()
-        {
-            return _unit;
-        }
+        } 
+        #endregion
     }
 }

@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zymurgy.Dymensions", "Zymurgy.Dymensions\Zymurgy.Dymensions.csproj", "{899EBBB0-1B39-40EE-9775-92323F6810AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zymurgy.Dimensions.Specs", "Zymurgy.Dimensions.Specs\Zymurgy.Dimensions.Specs.csproj", "{50D80547-5C57-4E8F-9356-EA8200AC3AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{899EBBB0-1B39-40EE-9775-92323F6810AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{899EBBB0-1B39-40EE-9775-92323F6810AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{899EBBB0-1B39-40EE-9775-92323F6810AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D80547-5C57-4E8F-9356-EA8200AC3AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D80547-5C57-4E8F-9356-EA8200AC3AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D80547-5C57-4E8F-9356-EA8200AC3AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D80547-5C57-4E8F-9356-EA8200AC3AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
